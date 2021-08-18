@@ -1,0 +1,29 @@
+from snakemake.utils import min_version
+
+min_version("6.3.0")
+
+
+configfile: "config/config.yaml"
+
+
+SAMPLES = ["NA12878"]
+ALIGNERS = ["bwa", "novoalign"]
+VARTYPES=["SNV", "INS", "DEL", "MNV", "BND", "INV", "DUP", "REP"]
+
+include: "rules/ref.smk"
+include: "rules/trimming.smk"
+include: "rules/mapping.smk"
+include: "rules/candidate_calling.smk"
+include: "rules/candidate_merging.smk"
+include: "rules/candidate_norm.smk"
+include: "rules/varlociraptor_calling.smk"
+include: "rules/varlociraptor_filtering.smk"
+
+
+rule all:
+    input:
+        "results/varlociraptor_filter/norm_final.vcf",
+
+
+
+
