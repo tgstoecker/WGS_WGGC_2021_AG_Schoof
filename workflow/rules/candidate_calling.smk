@@ -67,7 +67,7 @@ rule deep_variant_calling:
     output:
         vcf=temp("results/candidate_calls/deep_variant/{sample}.{aligner}.vcf.gz")
     params:
-        model="wes",   # {wgs, wes, pacbio, hybrid}
+        model="wgs",   # {wgs, wes, pacbio, hybrid}
         #sample_name=lambda w: w.sample, # optional
         extra=""
     threads: 24
